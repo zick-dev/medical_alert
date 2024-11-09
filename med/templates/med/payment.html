@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="payment-container">
+    <h1>Payment Information</h1>
+    <p>Your payment status: {{ payment_status }}</p>  <!-- Add logic to fetch payment status -->
+    <h2>Make a Payment</h2>
+    <form method="POST" action="{% url 'process_payment' %}">  <!-- Create a URL for processing payments -->
+        {% csrf_token %}
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" required>
+        <button type="submit">Pay Now</button>
+    </form>
+</div>
+{% endblock %}

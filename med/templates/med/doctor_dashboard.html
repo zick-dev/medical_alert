@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>{{ doctor_name }}'s Dashboard</h2>
+
+    <h3>Doctor Information</h3>
+    <ul>
+      <li><strong>Name:</strong> {{ doctor_name }}</li>
+      <li><strong>Level:</strong> {{ doctor_level }}</li>
+      <li><strong>Status:</strong> {{ doctor_status }}</li>
+      <li><strong>Phone Number:</strong> {{ doctor_number }}</li>
+      <li><strong>Email:</strong> {{ doctor_email }}</li>
+      <li><strong>Doctor ID:</strong> {{ doctor_id }}</li>
+    </ul>
+
+    <h3>Patient Statistics</h3>
+    <ul>
+      <li><strong>Total Patients:</strong> {{ total_patients }}</li>
+      <li><strong>Active Patients:</strong> {{ active_patients }}</li>
+      <li><strong>Past Patients:</strong> {{ past_patients }}</li>
+    </ul>
+
+    <h3>Appointments</h3>
+    <ul>
+      <li><strong>Today's Appointments:</strong> {{ todays_appointments.count }}</li>
+      <li><strong>Upcoming Appointments:</strong> {{ upcoming_appointments.count }}</li>
+    </ul>
+
+    <h3>Appointment Statistics</h3>
+    <ul>
+      <li><strong>Weekly Appointments:</strong> {{ weekly_appointments }}</li>
+      <li><strong>Monthly Appointments:</strong> {{ monthly_appointments }}</li>
+    </ul>
+
+    <h3>New Appointment Requests</h3>
+    <p>{{ new_appointments }}</p>
+
+    <h3>Patient Reviews</h3>
+    <ul>
+      {% for review in patient_reviews %}
+        <li>{{ review.patient.name }}: {{ review.review_text }}</li>
+      {% empty %}
+        <li>No reviews yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

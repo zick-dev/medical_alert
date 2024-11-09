@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Settings Updated Successfully</h2>
+
+<p>Your settings have been updated successfully.</p>
+
+<h3>Summary of Changes:</h3>
+<ul>
+    {% if form.email %}
+        <li>Email: {{ form.email.value }}</li>
+    {% endif %}
+    {% if form.notification_preferences %}
+        <li>Email Notifications: {{ form.notification_preferences.value }}</li>
+    {% endif %}
+    {% if form.new_password %}
+        <li>Password: Changed</li>
+    {% endif %}
+</ul>
+
+<a href="{% url 'settings' %}">Go back to Settings</a>
+<a href="{% url 'doctor-dashboard' %}">Return to Dashboard</a>
+
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

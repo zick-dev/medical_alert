@@ -1,0 +1,9 @@
+<!-- med/doctor_list.html -->
+<h2>Available Doctors</h2>
+<ul>
+    {% for doctor in doctors %}
+        <li>
+            <a href="{% url 'doctor_profile' doctor.id %}">{{ doctor.name }} - {{ doctor.department }}</a>
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,33 @@
+{% extends base.html %}
+{% block content %}
+    <h2>Manage Users</h2>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    {% for doctor in doctors %}
+    <tr>
+        <td>{{ doctor.user.username }}</td>
+        <td>{{ doctor.user.email }}</td>
+        <td>Doctor</td>
+        <td><a href="{% url 'delete_user' doctor.user.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    {% for patient in patients %}
+    <tr>
+        <td>{{ patient.user.username }}</td>
+        <td>{{ patient.user.email }}</td>
+        <td>Patient</td>
+        <td><a href="{% url 'delete_user' patient.user.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="{% url 'delete_all_users' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you sure you want to delete all users?')">Delete All Users</button>
+</form>
+{% endblock %}

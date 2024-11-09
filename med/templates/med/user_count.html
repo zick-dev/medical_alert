@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Total Users: {{ user_count }}</h2>
+
+<h3>Patient Emails and Passwords</h3>
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Hashed Password</th>
+    </tr>
+    {% for patient in patients_data %}
+    <tr>
+        <td>{{ patient.email }}</td>
+        <td>{{ patient.password }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>User Count</h2>
+<p>Total Users: {{ user_count }}</p>
+
+<h3>Delete All Users</h3>
+<p>Are you sure you want to delete all users? This action cannot be undone.</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete All Users</button>
+</form> <br>
+<a href="{% url 'admin-dashboard' %}" class="btn btn-secondary">Cancel</a>
+{% endblock %}

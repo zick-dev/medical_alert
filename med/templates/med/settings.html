@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>User Settings</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Renders the form fields -->
+
+    <h3>Notification Preferences</h3>
+    <label>
+        <input type="checkbox" name="email_notifications" {% if user.usersettings.email_notifications %}checked{% endif %}>
+        Receive email notifications
+    </label>
+
+    <h3>Change Password</h3>
+    <label for="new_password">New Password:</label>
+    <input type="password" name="new_password" id="new_password">
+
+    <label for="confirm_password">Confirm New Password:</label>
+    <input type="password" name="confirm_password" id="confirm_password">
+
+    <button type="submit">Save Changes</button>
+</form>
+
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<a href="{% url 'doctor-dashboard' %}">Back to Dashboard</a>
+{% endblock %}
+
